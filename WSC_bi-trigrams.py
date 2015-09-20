@@ -31,7 +31,7 @@ def match_grams(lis1, lis2):
             if val1 == val2:
                 cnt += 1
     if len(lis2) !=0:
-        return cnt/float(len(lis2))
+        return cnt/float(len(set.union(set(lis2),set(lis1))))
     else:
         return 0
 
