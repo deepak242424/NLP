@@ -52,4 +52,4 @@ def gen_candidates(wrd, all_bigrams_dict, all_trigrams_dict):
 
 
 in_bigrams, in_trigrams = get_bitri(in_words)
-print gen_candidates('corect', in_bigrams, in_trigrams)
+print gen_candidates('furnitur', in_bigrams, in_trigrams)
