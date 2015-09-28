@@ -12,22 +12,22 @@ def levenshtein(s1, s2):
         return len(s1)
 
     operations = ['i','s','d']
-
+    costs = [1,2,2];
     previous_row = range(len(s2) + 1)
     for i, c1 in enumerate(s1):
         current_row = [i + 1]
         for j, c2 in enumerate(s2):
-            insertions = previous_row[j + 1] + 1 # j+1 instead of j since previous_row and current_row are one character longer
-            deletions = current_row[j] + 1       # than s2
-            substitutions = previous_row[j] + (c1 != c2)
+            insertions = previous_row[j + 1] + costs[0] # j+1 instead of j since previous_row and current_row are one character longer
+            deletions = current_row[j] + costs[1]       # than s2
+            substitutions = previous_row[j] + costs[2]*(c1 != c2)
             min_index, min_value = min(enumerate([insertions,deletions,substitutions]), key=operator.itemgetter(1))
             levenmat[i][j] = min_value
 
             current_row.append(min_value)
 #            current_row.append(min(insertions, deletions, substitutions))
         previous_row = current_row
-    print levenmat
-
+#    print levenmat
+    print('\n'.join([''.join(['{:4}'.format(item) for item in row])for row in levenmat]))
     curr_min = [0,0]
     edits = [];
 
@@ -64,5 +64,6 @@ def getLevenPath(G, currnode, levenmat, i, j):
             if levenmat[validnbr[0]][validnbr[1]] == minval:
                  tree.add_node
 
-
-print levenshtein('correct', 'corect')
+#print levenshtein('spake', 'park')
+#print levenshtein('succeed', 'accede')
+print levenshtein('ab','a')
