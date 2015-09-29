@@ -1,5 +1,6 @@
 import re, collections
 from operator import itemgetter
+import cPickle
 
 def words(text): return re.findall('[a-z]+', text.lower())
 in_words = words(file('big.txt').read())
@@ -50,6 +51,29 @@ def gen_candidates(wrd, all_bigrams_dict, all_trigrams_dict):
     tri_scores.sort(key = itemgetter(1), reverse=True)
     return bi_scores[:10], tri_scores[:10]
 
+def gen_inverted_idx(all_bigram_dict, all_trigram_dict):
+    temp_idx_dic = {}
+    for key in all_bigram_dict.keys():
+        for val in all_bigram_dict[key]:
+            if val not in temp_idx_dic.keys():
+                temp_idx_dic[val] = []
+            temp_idx_dic[val].append(key)
+
+    for key in all_trigram_dict.keys():
+        for val in all_trigram_dict[key]:
+            if val not in temp_idx_dic.keys():
+                temp_idx_dic[val] = []
+            temp_idx_dic[val].append(key)
+    return temp_idx_dic
 
 in_bigrams, in_trigrams = get_bitri(in_words)
-print gen_candidates('furnitur', in_bigrams, in_trigrams)
+inverted_idx_dic = gen_inverted_idx(in_bigrams, in_trigrams)
+
+save_tuple = (in_bigrams, in_trigrams, inverted_idx_dic)
+
+f = file('bi_tri_index.save', 'wb')
+cPickle.dump(save_tuple, f, protocol=cPickle.HIGHEST_PROTOCOL)
+f.close()
+
+
+#print gen_candidates('furnitur', in_bigrams, in_trigrams)
