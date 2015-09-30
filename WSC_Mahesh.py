@@ -1,7 +1,5 @@
 __author__ = 'Student'
 
-__author__ = 'Student'
-
 import re, collections
 import sys
 from heapq import nlargest
@@ -10,37 +8,23 @@ from operator import itemgetter
 def words(text): return re.findall('[a-z]+', text.lower())
 
 flag = 0
-prior = words(file('C:/Users/Student/Desktop/big.txt').read())
+prior = words(file('big.txt').read())
 prior_hashtable = collections.defaultdict(lambda: 1)
 for line in prior:
-
-    # temp = line.split("\t")
-    # prior_hashtable [temp[0].lower()] = temp[1]
-    #print line
     prior_hashtable[line] += 1
-
-# test1 = open('C:/Users/Student/Desktop/spell-errors.txt', 'r')
-# sample = collections.defaultdict(lambda: 1)
-# for line in test1:
-#     temp1 = line.split(":")
-#     temp2 = line.split(",")
 
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
 def edit_distance_1(text):
-   #print 'test1'
    s = [(text[:i], text[i:]) for i in range(len(text) + 1)]
    deletion    = [a + b[1:] for a, b in s if b]
    transposition = [a + b[1] + b[0] + b[2:] for a, b in s if len(b)>1]
    replacement   = [a + c + b[1:] for a, b in s for c in alphabet if b]
    insertion   = [a + c + b     for a, b in s for c in alphabet]
-   #print 'test2'
    return set(deletion + transposition + replacement + insertion)
 
 def edit_distance_2(text):
-    #print 'test'
     return set(e2 for e1 in edit_distance_1(text) for e2 in edit_distance_2(e1) if e2 in prior_hashtable)
-
 
 def available(words): return set(w for w in words if w in prior_hashtable)
 
@@ -64,9 +48,7 @@ def spellcheck(word):
 
     return max(candidates, key=prior_hashtable.get)
 
-
-in_words = words(file('C:/Users/Student/Desktop/big.txt').read())
-
+in_words = words(file('big.txt').read())
 
 def get_bigrams(wrd):
     bigrams = []
@@ -122,14 +104,6 @@ def gen_candidates(wrd, all_bigrams_dict, all_trigrams_dict):
 
 
 in_bigrams, in_trigrams = get_bitri(in_words)
-# input_word = raw_input('Enter a word: ')
-# spellcheck(input_word)
-# in_bigrams, in_trigrams = get_bitri(in_words)
-# bitri_hashtable = collections.defaultdict(lambda: 1)
-# bitri_hashtable = gen_candidates(input_word, in_bigrams, in_trigrams)
-# print gen_candidates(input_word, in_bigrams, in_trigrams)
-
-
 
 def final_output():
     input_word = raw_input('Enter a word: ')
@@ -146,12 +120,3 @@ def final_output():
 if (flag == 0):
     flag = flag + 1
     final_output()
-
-#print ('test')
-
-
-# input_word = raw_input('Enter a word: ')
-# spellcheck(input_word)
-# print gen_candidates(input_word, in_bigrams, in_trigrams)
-# final_output()
-
