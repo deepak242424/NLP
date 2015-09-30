@@ -136,8 +136,14 @@ def savegrams():
     f.close()
 
 #------------------Main--------------------#
+if len(sys.argv) != 2:
+    print "usage: python wordspellcheck.py <input_file>"
+    sys.exit(1)
+print "Loading dictionaries..."
 (in_bigrams, in_trigrams, inverted_idx_dic) = loadgrams()
-savegrams()
+print "Dictionaries loaded!"
+
+#savegrams()
 with open(sys.argv[1], 'rb') as f:
     reader = csv.reader(f)
     for row in reader:
