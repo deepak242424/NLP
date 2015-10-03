@@ -21,7 +21,58 @@ def edit_distance_1(text):
 
 def edit_distance_2(text):
     #Returns all words at edit distance 2 from the input word,"text"
-    return set(e2 for e1 in edit_distance_1(text) for e2 in edit_distance_2(e1) if e2 in prior_hashtable)
+#    return set(e2 for e1 in edit_distance_1_transform(text) for e2 in edit_distance_2(e1) if e2 in prior_hashtable)
+    key_dict = dict()
+    for e1 in edit_distance_1_transform(text):
+        key_dict
+
+
+def edit_distance_1_transform(text):
+    #Returns all words at edit distance 1 from the input word,"text"
+    edit_dict = dict()
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    s = [(text[:i], text[i:]) for i in range(len(text) + 1)]
+
+#    deletion    = [a + b[1:] for a, b in s if b]
+    for a, b in s:
+        if b:
+            word = a + b[1:]
+            if word in edit_dict:
+                edit_dict[word].append('d'+a[-1]+b[0])
+            else:
+                edit_dict[word] = ['d'+a[-1]+b[0]]
+
+#    transposition = [a + b[1] + b[0] + b[2:] for a, b in s if len(b)>1]
+    for a, b in s:
+        if len(b)>1:
+            word = a + b[1] + b[0] + b[2:]
+            if word in edit_dict:
+                edit_dict[word].append('t'+b[0]+b[1])
+            else:
+                edit_dict[word] = ['t'+b[0]+b[1]]
+
+#    substitution   = [a + c + b[1:] for a, b in s for c in alphabet if b]
+    for a, b in s:
+        for c in alphabet:
+            if b:
+                word = a + c + b[1:]
+                if word in edit_dict:
+                    edit_dict[word].append('s'+b[0]+c)
+                else:
+                    edit_dict[word] = ['s'+b[0]+c]
+
+#    insertion   = [a + c + b     for a, b in s for c in alphabet]
+    for a, b in s:
+        for c in alphabet:
+            if b:
+                word = a + c + b
+                if word in edit_dict:
+                    edit_dict[word].append('i'+a[-1]+c)
+                else:
+                    edit_dict[word] = ['s'+b[0]+c]
+
+
+    return edit_dict
 
 def get_bigrams(wrd):
     #Gives bigrams in a word
@@ -139,6 +190,7 @@ def savegrams():
 if len(sys.argv) != 2:
     print "usage: python wordspellcheck.py <input_file>"
     sys.exit(1)
+'''
 print "Loading dictionaries..."
 (in_bigrams, in_trigrams, inverted_idx_dic) = loadgrams()
 print "Dictionaries loaded!"
@@ -152,3 +204,5 @@ with open(sys.argv[1], 'rb') as f:
         print "Word: ",input_word
         print "Bigram matches: ", bi_scores_sorted
         print "Trigram matches: ", tri_scores_sorted
+'''
+edit_distance_1_transform('hello')
