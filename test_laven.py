@@ -11,8 +11,8 @@ def levenshtein(s1, s2):
     if len(s2) == 0:
         return len(s1)
 
-    operations = ['i','s','d']
-    costs = [1,2,2];
+    operations = ['i','d','s']
+    costs = [1,1,2];
     previous_row = range(len(s2) + 1)
     for i, c1 in enumerate(s1):
         current_row = [i + 1]
@@ -26,6 +26,8 @@ def levenshtein(s1, s2):
             current_row.append(min_value)
 #            current_row.append(min(insertions, deletions, substitutions))
         previous_row = current_row
+    return levenmat[-1][-1]
+'''
 #    print levenmat
     print('\n'.join([''.join(['{:4}'.format(item) for item in row])for row in levenmat]))
     curr_min = [0,0]
@@ -43,7 +45,7 @@ def levenshtein(s1, s2):
         print min_value
 
     return previous_row[-1]
-
+'''
 def getLevenPath(G, currnode, levenmat, i, j):
     rows = len(levenmat)
     cols = len(levenmat[0])
@@ -66,4 +68,4 @@ def getLevenPath(G, currnode, levenmat, i, j):
 
 #print levenshtein('spake', 'park')
 #print levenshtein('succeed', 'accede')
-print levenshtein('ab','a')
+print levenshtein('hello','sello')

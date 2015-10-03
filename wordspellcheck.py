@@ -7,8 +7,35 @@ import csv
 from heapq import nlargest
 from operator import itemgetter
 import cPickle
+import numpy as np
+import os
+import math
 
 def words(text): return re.findall('[a-z]+', text.lower())
+
+def getWordList():
+    s = words(file('word.list').read())
+    out = dict.fromkeys(s, 0)
+    return out
+
+def savePriorHashTable():
+    prior = words(file('big.txt').read())
+    prior_hashtable = {}
+
+    for line in prior:
+        if line not in prior_hashtable:
+            prior_hashtable[line] = 1
+        prior_hashtable[line.lower()] += 1
+
+    f = file('prior_hashtable.save', 'wb')
+    cPickle.dump(prior_hashtable, f, protocol=cPickle.HIGHEST_PROTOCOL)
+    f.close()
+
+def loadPriorHashTable():
+    f = open('prior_hashtable.save', 'rb')
+    prior_hashtable = cPickle.load(f)
+    f.close()
+    return prior_hashtable
 
 def edit_distance_1(text):
     #Returns all words at edit distance 1 from the input word,"text"
@@ -21,26 +48,27 @@ def edit_distance_1(text):
 
 def edit_distance_2(text):
     #Returns all words at edit distance 2 from the input word,"text"
-#    return set(e2 for e1 in edit_distance_1_transform(text) for e2 in edit_distance_2(e1) if e2 in prior_hashtable)
-    key_dict = dict()
-    for e1 in edit_distance_1_transform(text):
-        key_dict
-
+    return set(e2 for e1 in edit_distance_1_transform(text) for e2 in edit_distance_2(e1) if e2 in prior_hashtable)
 
 def edit_distance_1_transform(text):
     #Returns all words at edit distance 1 from the input word,"text"
-    edit_dict = dict()
-    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    edit_dict = {}
     s = [(text[:i], text[i:]) for i in range(len(text) + 1)]
 
 #    deletion    = [a + b[1:] for a, b in s if b]
     for a, b in s:
-        if b:
+        if a and b:
             word = a + b[1:]
             if word in edit_dict:
                 edit_dict[word].append('d'+a[-1]+b[0])
             else:
                 edit_dict[word] = ['d'+a[-1]+b[0]]
+        elif not a and b:
+            word = a + b[1:]
+            if word in edit_dict:
+                edit_dict[word].append('d'+'~'+b[0])
+            else:
+                edit_dict[word] = ['d'+'~'+b[0]]
 
 #    transposition = [a + b[1] + b[0] + b[2:] for a, b in s if len(b)>1]
     for a, b in s:
@@ -53,7 +81,7 @@ def edit_distance_1_transform(text):
 
 #    substitution   = [a + c + b[1:] for a, b in s for c in alphabet if b]
     for a, b in s:
-        for c in alphabet:
+        for c in alphabet[0:25]:
             if b:
                 word = a + c + b[1:]
                 if word in edit_dict:
@@ -63,16 +91,75 @@ def edit_distance_1_transform(text):
 
 #    insertion   = [a + c + b     for a, b in s for c in alphabet]
     for a, b in s:
-        for c in alphabet:
-            if b:
+        for c in alphabet[0:25]:
+            if a:
                 word = a + c + b
                 if word in edit_dict:
                     edit_dict[word].append('i'+a[-1]+c)
                 else:
-                    edit_dict[word] = ['s'+b[0]+c]
+                    edit_dict[word] = ['i'+a[-1]+c]
+            else:
+                word = a + c + b
+                if word in edit_dict:
+                    edit_dict[word].append('i'+'~'+c)
+                else:
+                    edit_dict[word] = ['i'+'~'+c]
 
+    if text in edit_dict:
+        edit_dict.pop(text,None)
 
     return edit_dict
+
+def edit_distance_2_transform(orig_word, edit_dict1):
+    #Returns all words at edit distance 2 from the input word,"text"
+    edit_dict2 = {}
+
+    for key,val in edit_dict1.iteritems():
+        edit_dict_test = edit_distance_1_transform(key)
+        available_keys = prior_hashtable_keys.intersection(set(edit_dict_test.keys()))-set(orig_word)
+        for key_bad in list(set(edit_dict_test.keys()) - set(available_keys)):
+            edit_dict_test.pop(key_bad,None)
+
+        for key_test,val_test in edit_dict_test.iteritems():
+            for val_test_elem in val_test:
+                for val_elem in val:
+                    if key_test not in edit_dict2:
+                        edit_dict2[key_test] = []
+                    edit_dict2[key_test].append(val_elem+val_test_elem)
+    return edit_dict2
+
+def getConfusionMatrices():
+    rev_mat = np.loadtxt(open('confusion/rev.txt','r'),delimiter=' ',skiprows=0)+1
+    ins_mat = np.loadtxt(open('confusion/ins.txt','r'),delimiter=' ',skiprows=0)+1
+    del_mat = np.loadtxt(open('confusion/del.txt','r'),delimiter=' ',skiprows=0)+1
+    sub_mat = np.loadtxt(open('confusion/sub.txt','r'),delimiter=' ',skiprows=0).T+1
+    toreturn = (rev_mat,ins_mat,del_mat,sub_mat)
+    return toreturn
+
+def getBigramMatrix():
+
+    bigrammat = np.zeros((26,26))
+    f = open('count_2l.txt','r')
+    x = csv.reader(f,delimiter='\t')
+    for elem in list(x):
+        i1 = alphabet.index(elem[0][0])
+        i2 = alphabet.index(elem[0][1])
+        bigrammat[i1][i2]=int(elem[1])
+    return bigrammat
+
+def vector(in_file):
+   lines = in_file.readlines()
+
+   lines = map(lambda x : x.strip(),lines)
+   lines = [int(float(line)) for line in lines]
+
+   mat = [[0 for x in range(26)] for x in range(26)]
+   k = 0
+   for i in range(26):
+       for j in range(26):
+           mat[i][j] = lines[k]
+           k = k+1
+   return mat
 
 def get_bigrams(wrd):
     #Gives bigrams in a word
@@ -106,10 +193,40 @@ def jaccard(lis1, lis2):
     else:
         return 0
 
-def available(words): return set(w for w in words if w in prior_hashtable)
+def available(words, prior_hashtable):
+    return set(w for w in words if w in prior_hashtable.keys())
 
-def spellcheck(word):
-    candidates = available([word]) or available(edit_distance_1(word)) or edit_distance_1(word) or [word]
+def mergedict(dict1, dict2):
+    outdict = dict()
+    for key in dict1:
+        outdict[key] = [dict1[key]]
+    for key in dict2:
+        if key in dict1:
+            outdict[key].append(dict2[key])
+        else:
+            outdict[key] = [dict2[key]]
+    return outdict
+
+def Pchange(operation):
+    #Given a sequence of operations, computes its probability of occurrence using the confusion matrices
+    index1 = alphabet.index(operation[1])
+    index2 = alphabet.index(operation[2])
+    if operation[0]=='d':
+        if index1 == 26:
+            out = del_mat[index1][index2] / sum(bigrammat[:][index2])
+        else:
+            out = del_mat[index1][index2] / bigrammat[index1][index2]
+    elif operation[0]=='i':
+        out = ins_mat[index1][index2] / sum(bigrammat[index2][:])
+    elif operation[0]=='s':
+        out = sub_mat[index1][index2] / sum(bigrammat[index1][:])
+    else:
+        out = rev_mat[index1][index2] / bigrammat[index1][index2]
+    return out
+
+def getBayesian0(word):
+    prior_hashtable = loadPriorHashTable()
+    candidates = available([word], prior_hashtable) or available(edit_distance_1(word), prior_hashtable) or edit_distance_1(word) or [word]
     print max(candidates, key=prior_hashtable.get)
     final_list = []
 
@@ -120,6 +237,62 @@ def spellcheck(word):
     print nlargest(10, final_list,key=prior_hashtable.get)
 
     return max(candidates, key=prior_hashtable.get)
+
+def getBayesian1(word):
+    if word in prior_hashtable:
+        print "The word, "+ word+ " is correct."
+    edit1worddict = edit_distance_1_transform(word)
+    edit2worddict = edit_distance_2_transform(word, edit1worddict)
+
+    probabdict = {}
+
+    #Remove incorrect edit 1 words
+    available_keys = prior_hashtable_keys.intersection(set(edit1worddict.keys()))
+    for key_bad in list(set(edit1worddict.keys()) - set(available_keys)):
+        edit1worddict.pop(key_bad,None)
+
+    for edit1word,vals in edit1worddict.iteritems():
+        p = 0
+        for val in vals:
+            p += Pchange(val)
+        probabdict[edit1word]=p
+
+    for edit2word,vals in edit2worddict.iteritems():
+        if edit2word in probabdict:
+            p = probabdict[edit2word]
+        else:
+            p=0
+        for val in vals:
+            p += Pchange(val[0:3])*Pchange(val[3:])
+        probabdict[edit2word]=p
+    return probabdict
+
+def levenshtein(s1, s2):
+    if len(s1) < len(s2):
+        return levenshtein(s2, s1)
+
+    levenmat = [[0 for col in range(len(s2))] for row in range(len(s1))]
+
+    # len(s1) >= len(s2)
+    if len(s2) == 0:
+        return len(s1)
+
+    operations = ['i','d','s']
+    costs = [1,1,2];
+    previous_row = range(len(s2) + 1)
+    for i, c1 in enumerate(s1):
+        current_row = [i + 1]
+        for j, c2 in enumerate(s2):
+            insertions = previous_row[j + 1] + costs[0] # j+1 instead of j since previous_row and current_row are one character longer
+            deletions = current_row[j] + costs[1]       # than s2
+            substitutions = previous_row[j] + costs[2]*(c1 != c2)
+            min_index, min_value = min(enumerate([insertions,deletions,substitutions]), key=operator.itemgetter(1))
+            levenmat[i][j] = min_value
+
+            current_row.append(min_value)
+#            current_row.append(min(insertions, deletions, substitutions))
+        previous_row = current_row
+    return levenmat[-1][-1]
 
 def gen_candidates(wrd, all_bigrams_dict, all_trigrams_dict, inverted_idx_dic):
     trigrams = get_trigrams(wrd)
@@ -186,11 +359,36 @@ def savegrams():
     cPickle.dump(save_tuple, f, protocol=cPickle.HIGHEST_PROTOCOL)
     f.close()
 
+def cleanbrown():
+    files = os.listdir('brown/')
+#    regex = re.compile(r"/[a-z]+", re.IGNORECASE)
+    fout = open('brownuntagged.txt','w')
+    for file in files:
+        f = open('brown/'+file,'r')
+        text = f.readlines()
+        for line in text:
+            line = re.sub("/[a-z]*", "", line)
+            line = re.findall('[a-z]+', line.lower())
+            if line!=[]:
+                fout.writelines(' '.join(line))
+        f.close()
+    fout.close()
+
+#----------------Global variables----------------------------
+alphabet = 'abcdefghijklmnopqrstuvwxyz~'
+prior_hashtable = loadPriorHashTable()
+prior_hashtable_keys = set(prior_hashtable.keys())
+(rev_mat,ins_mat,del_mat,sub_mat) = getConfusionMatrices()
+bigrammat = getBigramMatrix()
+#------------------------------------------------------------
+
+
 #------------------Main--------------------#
+
+'''
 if len(sys.argv) != 2:
     print "usage: python wordspellcheck.py <input_file>"
     sys.exit(1)
-'''
 print "Loading dictionaries..."
 (in_bigrams, in_trigrams, inverted_idx_dic) = loadgrams()
 print "Dictionaries loaded!"
@@ -205,4 +403,12 @@ with open(sys.argv[1], 'rb') as f:
         print "Bigram matches: ", bi_scores_sorted
         print "Trigram matches: ", tri_scores_sorted
 '''
-edit_distance_1_transform('hello')
+'''
+testdict = {}
+ed1 =  edit_distance_1_transform('helso')
+print edit_distance_2_transform('hello', ed1)
+'''
+
+x = getBayesian1("resoltion")
+sorted_x = sorted(x.items(), key=itemgetter(1),reverse=True)
+print sorted_x
