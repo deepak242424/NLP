@@ -6,6 +6,7 @@ import operator
 import wordspellcheck
 import csv
 import globaldefs
+import sys
 
 def words(text): return re.findall('[a-z]+', text.lower())
 
@@ -102,6 +103,8 @@ def splitlong(word, in_words,direction='rev'):
         return toreturn
 
 def split2string(in_list):
+    if in_list == -1:
+        return -1
     outsplit = ''
     for i in in_list:
         if not isinstance(i, list):
@@ -112,20 +115,36 @@ def split2string(in_list):
 
 def splitWord(word):
     in_words = words(file('word.list').read())
-    out_rev = split2string(splitlong(word, in_words,'rev')).split()
-    out_fwd = split2string(splitlong(word, in_words,'fwd')).split()
+    out_rev = split2string(splitlong(word, in_words,'rev'))
+    out_fwd = split2string(splitlong(word, in_words,'fwd'))
+
+    out_rev_bad=False
+    out_fwd_bad=False
+
+    if out_rev != -1:
+        out_rev = out_rev.split()
+    else:
+        out_rev_bad = True
+    if out_fwd != -1:
+        out_fwd = out_fwd.split()
+    else:
+        out_fwd_bad = True
 
     p_out_rev = 0
     p_out_fwd = 0
 
-    for out in out_rev:
-        if out in globaldefs.prior_hashtable:
-            p_out_rev += globaldefs.prior_hashtable[out]
+    if not out_rev_bad:
+        for out in out_rev:
+            if out in globaldefs.prior_hashtable:
+                p_out_rev += globaldefs.prior_hashtable[out]
 
-    for out in out_fwd:
-        if out in globaldefs.prior_hashtable:
-            p_out_fwd += globaldefs.prior_hashtable[out]
+    if not out_fwd_bad:
+        for out in out_fwd:
+            if out in globaldefs.prior_hashtable:
+                p_out_fwd += globaldefs.prior_hashtable[out]
 
+    if max(p_out_rev,p_out_fwd) == 0:
+        return -1
     if p_out_rev > p_out_fwd:
         return ' '.join(out_rev)
     else:
@@ -135,15 +154,15 @@ def getPhraseSuggestionsFromFile(filename):
     suggestionDict = {}
     with open(filename) as f:
         for line in f:
-            makePhraseChanges(line,True,True)
+            suggestionDict[line]=makePhraseChanges(line,True,True)
     f.close()
     return suggestionDict
 
 def makePhraseChanges(phrase, bayesian=True,splitting=True):
     BayesianDict = getPhraseSuggestionsDict(phrase)
-
     if splitting:
         splitDict = getSplitCorrectionsDict(phrase)
+        print BayesianDict, splitDict
 
         for key in splitDict:
             if key in BayesianDict:
@@ -156,8 +175,9 @@ def makePhraseChanges(phrase, bayesian=True,splitting=True):
         correctedPhrase[correctedPhrase.index(key)] = correctedword
 
     if splitting:
-        if key in splitDict:
+        for key in splitDict:
             correctedPhrase[correctedPhrase.index(key)] = splitDict[key]
+
 
     correctedPhrase = ' '.join(correctedPhrase)
     # print correctedPhrase
@@ -207,18 +227,25 @@ def getPhraseSuggestionsDict(phrase):
 
             sortedsuggestionScoreDict[incorrectword] = sorted(suggestionScoreDict[incorrectword].items(), key=operator.itemgetter(1), reverse=True)
 
-    # print sortedsuggestionScoreDict
+    print sortedsuggestionScoreDict
     return sortedsuggestionScoreDict
 
+def writeDictToFile(suggestiondict, fin, fout, maxnum):
+    fo = open(fout,'w')
 
-#----------------Global variables----------------------------
-# DICTIONARY_PATH = 'word.list'
-# alphabet = 'abcdefghijklmnopqrstuvwxyz~'
-# prior_hashtable = wordspellcheck.loadPriorHashTable()
-# prior_hashtable_keys = set(prior_hashtable.keys())
-# (rev_mat,ins_mat,del_mat,sub_mat) = wordspellcheck.getConfusionMatrices()
-# bigrammat = wordspellcheck.getBigramMatrix()
-# # (in_bigrams, in_trigrams, inverted_idx_dic) = wordspellcheck.loadgrams()
+    with open(fin, 'rb') as fi:
+        reader = csv.reader(fi)
+        for row in reader:
+            input_word = row[0]
+            towrite = input_word+'\t'+suggestiondict[input_word]
+            # for count, word in enumerate(suggestiondict[input_word]):
+            #     if count == maxnum:
+            #         break
+            #     towrite += word[0] + '\t' + str(word[1]) + '\t'
+            print towrite
+            fo.write(towrite + '\n')
+    fi.close()
+    fo.close()
 
 window = 5
 smooth_constant = 1e-5
@@ -230,5 +257,16 @@ print 'Context likelihoods loaded!'
 
 
 #----------------------Main------------------------------
-#saveLikelihoodDict(5)
-getPhraseSuggestionsFromFile('test2')
+# getPhraseSuggestionsFromFile('test2', )
+if __name__ == "__main__":
+    # if len(sys.argv) != 2:
+    #     print "usage: python wordspellcheck.py <input_file>"
+    #     sys.exit(1)
+    #
+    # fin = sys.argv[1]
+    # # print getWordSuggestionsForFile(sys.argv[1])
+    fin = 'test2'
+    suggestiondict = getPhraseSuggestionsFromFile(fin)
+    writeDictToFile(suggestiondict, fin, fin+'PSC', 3)
+    print "Output written to " + fin+'PSC'
+#------------------------------------------------------------

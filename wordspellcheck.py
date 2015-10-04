@@ -427,15 +427,34 @@ def getWordSuggestionsForFile(filename,numsuggestions=5):
     f.close()
     return suggestionDict
 
+def writeDictToFile(suggestiondict, fin, fout, maxnum):
+    fo = open(fout,'w')
+
+    with open(fin, 'rb') as fi:
+        reader = csv.reader(fi)
+        for row in reader:
+            input_word = row[0]
+            towrite = input_word+'\t'
+            for count, word in enumerate(suggestiondict[input_word]):
+                if count == maxnum:
+                    break
+                towrite += word[0] + '\t' + str(word[1]) + '\t'
+            fo.write(towrite + '\n')
+    fi.close()
+    fo.close()
+
+
 # ---------------Global variables----------------------------
 #----------------Run only in main----------------------------
 if __name__ == "__main__":
-    # if len(sys.argv) != 2:
-    #     print "usage: python wordspellcheck.py <input_file>"
-    #     sys.exit(1)
+    if len(sys.argv) != 2:
+        print "usage: python wordspellcheck.py <input_file>"
+        sys.exit(1)
 
+    fin = sys.argv[1]
     # print getWordSuggestionsForFile(sys.argv[1])
-    print getWordSuggestionsForFile('test')
-    (wordphonedict, bigrams_phone, inverted_bigram_phone) = loadMetaPhoneIndices()
-    print wordphonedict
+    # fin = 'test'
+    suggestiondict = getWordSuggestionsForFile(fin)
+    writeDictToFile(suggestiondict, fin, fin+'WSC', 10)
+    print "Output written to " + fin+'WSC'
 #------------------------------------------------------------
