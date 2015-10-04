@@ -2,6 +2,9 @@ __author__ = 'Abhishek'
 import numpy as np
 import csv
 import cPickle
+import re
+
+def words(text): return re.findall('[a-z]+', text.lower())
 
 def loadPriorHashTable():
     f = open('prior_hashtable.save', 'rb')
@@ -28,6 +31,11 @@ def getBigramMatrix():
         bigrammat[i1][i2]=int(elem[1])
     return bigrammat
 
+def getVocabSet():
+    f = open('word.list')
+    out = set(words(f.read()))
+    f.close()
+    return out
 
 DICTIONARY_PATH = 'word.list'
 alphabet = 'abcdefghijklmnopqrstuvwxyz~'
@@ -37,4 +45,6 @@ prior_hashtable_keys = set(prior_hashtable.keys())
 bigrammat = getBigramMatrix()
 print "Loading dictionaries..."
 #(in_bigrams, in_trigrams, inverted_idx_dic) = loadgrams()
+legit_words = getVocabSet()
 print "Dictionaries loaded!"
+

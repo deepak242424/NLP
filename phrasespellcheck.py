@@ -62,24 +62,16 @@ def loadLikelihoodDict():
     return toreturn
 
 def getWordSuggestions(incorrect,numsuggestions=5):
-#    suggestions = ['giant', 'ant', 'meant', 'stunt']
-    suggestions = wordspellcheck.getWordSuggestions(incorrect)
+    suggestions = wordspellcheck.getWordSuggestions(incorrect, numsuggestions,1)
     return suggestions
-
-def getVocabSet():
-    f = open('word.list')
-    out = set(words(f.read()))
-    f.close()
-    return out
 
 def getIncorrectWords(phrase):
     words_phrase = set(words(phrase))
-    legit_words = getVocabSet()
     # print legit_words.intersection(words_phrase)
-    incorrectword = words_phrase - legit_words.intersection(words_phrase)
+    incorrectword = words_phrase - globaldefs.legit_words.intersection(words_phrase)
     return incorrectword
 
-def splitlong(word, in_words):
+def splitlong(word, in_words,direction='rev'):
     if word in in_words:
         return word
     legitchars = ['a','i']
@@ -87,13 +79,17 @@ def splitlong(word, in_words):
     splits = []
     nextsplit = []
     found1 = False
-    for i in reversed(range(len(word) + 1)):
+    if direction == 'rev':
+        irange = reversed(range(len(word) + 1))
+    else:
+        irange = range(len(word) + 1)
+    for i in irange:
         splits.append([(word[:i], word[i:])])
         toreturn = []
 #        if (i>1 and word[:i] in in_words) or (i==1 and word[:i] in legitchars):
         if word[:i] in in_words:
             toreturn.append(word[:i])
-            nextsplit = [splitlong(word[i:], in_words)]
+            nextsplit = [splitlong(word[i:], in_words,direction)]
             for j in nextsplit:
                toreturn.append(j)
 
@@ -116,45 +112,104 @@ def split2string(in_list):
 
 def splitWord(word):
     in_words = words(file('word.list').read())
-    out = splitlong('goodworkisrewarded', in_words)
-    out = split2string(out)
-    return out
+    out_rev = split2string(splitlong(word, in_words,'rev')).split()
+    out_fwd = split2string(splitlong(word, in_words,'fwd')).split()
+
+    p_out_rev = 0
+    p_out_fwd = 0
+
+    for out in out_rev:
+        if out in globaldefs.prior_hashtable:
+            p_out_rev += globaldefs.prior_hashtable[out]
+
+    for out in out_fwd:
+        if out in globaldefs.prior_hashtable:
+            p_out_fwd += globaldefs.prior_hashtable[out]
+
+    if p_out_rev > p_out_fwd:
+        return ' '.join(out_rev)
+    else:
+        return ' '.join(out_fwd)
 
 def getPhraseSuggestionsFromFile(filename):
     suggestionDict = {}
-    with open(filename, 'rb') as f:
-        reader = csv.reader(f)
-        for row in reader:
-            phrase = str(row)
-            getPhraseSuggestions(phrase)
+    with open(filename) as f:
+        for line in f:
+            makePhraseChanges(line,True,True)
     f.close()
     return suggestionDict
 
-def getPhraseSuggestions(phrase):
+def makePhraseChanges(phrase, bayesian=True,splitting=True):
+    BayesianDict = getPhraseSuggestionsDict(phrase)
+
+    if splitting:
+        splitDict = getSplitCorrectionsDict(phrase)
+
+        for key in splitDict:
+            if key in BayesianDict:
+                BayesianDict.pop(key)
+
+    correctedPhrase = phrase.split()
+
+    for key in BayesianDict:
+        correctedword = BayesianDict[key][0][0]
+        correctedPhrase[correctedPhrase.index(key)] = correctedword
+
+    if splitting:
+        if key in splitDict:
+            correctedPhrase[correctedPhrase.index(key)] = splitDict[key]
+
+    correctedPhrase = ' '.join(correctedPhrase)
+    # print correctedPhrase
+    return correctedPhrase
+
+def getSplitCorrectionsDict(phrase):
+    incorrectwords = list(getIncorrectWords(phrase))
+    splitDict = {}
+    for incorrectword in incorrectwords:
+        splitout = splitWord(incorrectword)
+        print splitout
+        if splitout != -1 and len(splitout) != len(incorrectword):
+            splitDict[incorrectword] = splitout
+
+    return splitDict
+
+def getPhraseSuggestionsDict(phrase):
+    allwrongflag = 0
+    numsuggestions = 5
     incorrectwords = list(getIncorrectWords(phrase))
     #Change this!
     suggestionScoreDict = {}    #Key: Word, Value: Dictionary (Key: Suggestion, Value = score)
     sortedsuggestionScoreDict = {}
+
+    splitDict = {}
+
     if len(incorrectwords) == 0:
         incorrectwords = list(set(phrase.split()))
-
+        numsuggestions = 3
+        allwrongflag = 1
     for incorrectword in incorrectwords:
-        suggestions = getWordSuggestions(incorrectword)
-        suggestionScoreDict[incorrectword] = dict.fromkeys(suggestions)
+        suggestions = getWordSuggestions(incorrectword, numsuggestions)
+        suggestions_keys = [suggestion[0] for suggestion in suggestions]
+        suggestionScoreDict[incorrectword] = dict.fromkeys(suggestions_keys)
 #        output_likelihoods = dict.fromkeys(suggestions)
         for suggestion in suggestions:
-            if suggestion in likelihoods_dict:
-                suggestionScoreDict[incorrectword][suggestion] = 0  #Change to prior, no?
+            if suggestion[0] in likelihoods_dict:
+                suggestionScoreDict[incorrectword][suggestion[0]] = math.log(suggestion[1])  #Change to prior, no?
 #                print set(likelihoods_dict[suggestion].keys()).intersection(get_neighbours(words(phrase), incorrectword, window))
                 for testnbr in get_neighbours(words(phrase), incorrectword, window):
-                    if testnbr in likelihoods_dict[suggestion]:
-                        suggestionScoreDict[incorrectword][suggestion] += math.log(likelihoods_dict[suggestion][testnbr])
+                    if testnbr in likelihoods_dict[suggestion[0]]:
+                        suggestionScoreDict[incorrectword][suggestion[0]] += math.log(likelihoods_dict[suggestion[0]][testnbr])
                     else:
-                        suggestionScoreDict[incorrectword][suggestion] += math.log(smooth_constant/float((sum_count_dict[suggestion]+smooth_constant*vocab_size)))
+                        suggestionScoreDict[incorrectword][suggestion[0]] += math.log(smooth_constant/float((sum_count_dict[suggestion[0]]+smooth_constant*vocab_size)))
             else:
-                suggestionScoreDict[incorrectword][suggestion] = -float("inf")
+                suggestionScoreDict[incorrectword][suggestion[0]] = -float("inf")
+
             sortedsuggestionScoreDict[incorrectword] = sorted(suggestionScoreDict[incorrectword].items(), key=operator.itemgetter(1), reverse=True)
-    print sortedsuggestionScoreDict
+
+    # print sortedsuggestionScoreDict
+    return sortedsuggestionScoreDict
+
 
 #----------------Global variables----------------------------
 # DICTIONARY_PATH = 'word.list'
@@ -167,8 +222,10 @@ def getPhraseSuggestions(phrase):
 
 window = 5
 smooth_constant = 1e-5
-vocab_size = len(getVocabSet())
+vocab_size = len(globaldefs.legit_words)
+print 'Loading context likelihoods'
 (likelihoods_dict, sum_count_dict) = loadLikelihoodDict()
+print 'Context likelihoods loaded!'
 #------------------------------------------------------------
 
 

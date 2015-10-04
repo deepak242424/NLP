@@ -22,7 +22,7 @@ def getWordList():
     return out
 
 def savePriorHashTable():
-    prior = words(file('big.txt').read())
+    prior = words(file('brownuntagged.txt').read())
     prior_hashtable = {}
 
     for line in prior:
@@ -130,25 +130,6 @@ def edit_distance_2_transform(orig_word, edit_dict1):
                         edit_dict2[key_test] = []
                     edit_dict2[key_test].append(val_elem+val_test_elem)
     return edit_dict2
-
-# def getConfusionMatrices():
-#     rev_mat = np.loadtxt(open('confusion/rev.txt','r'),delimiter=' ',skiprows=0)+1
-#     ins_mat = np.loadtxt(open('confusion/ins.txt','r'),delimiter=' ',skiprows=0)+1
-#     del_mat = np.loadtxt(open('confusion/del.txt','r'),delimiter=' ',skiprows=0)+1
-#     sub_mat = np.loadtxt(open('confusion/sub.txt','r'),delimiter=' ',skiprows=0).T+1
-#     toreturn = (rev_mat,ins_mat,del_mat,sub_mat)
-#     return toreturn
-
-# def getBigramMatrix():
-#
-#     bigrammat = np.zeros((26,26))
-#     f = open('count_2l.txt','r')
-#     x = csv.reader(f,delimiter='\t')
-#     for elem in list(x):
-#         i1 = alphabet.index(elem[0][0])
-#         i2 = alphabet.index(elem[0][1])
-#         bigrammat[i1][i2]=int(elem[1])
-#     return bigrammat
 
 def vector(in_file):
    lines = in_file.readlines()
@@ -420,17 +401,21 @@ def loadMetaPhoneIndices():
     f.close()
     return (wordphonedict, bigrams_phone, inverted_bigram_phone)
 
-def getWordSuggestions(input_word, numsuggestions=5):
+def getWordSuggestions(input_word, numsuggestions=5, giveprobabs=0):
         x = getBayesian1(input_word,numsuggestions)
         # (bi_scores_sorted, tri_scores_sorted) = gen_candidates(input_word, in_bigrams, in_trigrams, inverted_idx_dic,"bitri")
         # print "Word: ",input_word
         # print "Bigram matches: ", bi_scores_sorted
         # print "Trigram matches: ", tri_scores_sorted
         # return x[0:numsuggestions]
-        out = []
-        for i in range(min(len(x),numsuggestions)):
-            out.append(x[i][0])
-        return out
+
+        if giveprobabs == 0:
+            out = []
+            for i in range(min(len(x),numsuggestions)):
+                out.append(x[i][0])
+            return out
+        else:
+            return x[0:numsuggestions]
 
 def getWordSuggestionsForFile(filename,numsuggestions=5):
     suggestionDict = {}
@@ -438,26 +423,19 @@ def getWordSuggestionsForFile(filename,numsuggestions=5):
         reader = csv.reader(f)
         for row in reader:
             input_word = row[0]
-            suggestionDict[input_word]=getWordSuggestions(input_word, numsuggestions)
+            suggestionDict[input_word]=getWordSuggestions(input_word, numsuggestions,1)
     f.close()
     return suggestionDict
 
 # ---------------Global variables----------------------------
 #----------------Run only in main----------------------------
 if __name__ == "__main__":
-    # DICTIONARY_PATH = 'word.list'
-    # alphabet = 'abcdefghijklmnopqrstuvwxyz~'
-    # prior_hashtable = loadPriorHashTable()
-    # prior_hashtable_keys = set(prior_hashtable.keys())
-    # (rev_mat,ins_mat,del_mat,sub_mat) = getConfusionMatrices()
-    # bigrammat = getBigramMatrix()
-    # print "Loading dictionaries..."
-    # #(in_bigrams, in_trigrams, inverted_idx_dic) = loadgrams()
-    # print "Dictionaries loaded!"
+    # if len(sys.argv) != 2:
+    #     print "usage: python wordspellcheck.py <input_file>"
+    #     sys.exit(1)
 
-    if len(sys.argv) != 2:
-        print "usage: python wordspellcheck.py <input_file>"
-        sys.exit(1)
-
-    print getWordSuggestionsForFile(sys.argv[1])
+    # print getWordSuggestionsForFile(sys.argv[1])
+    print getWordSuggestionsForFile('test')
+    (wordphonedict, bigrams_phone, inverted_bigram_phone) = loadMetaPhoneIndices()
+    print wordphonedict
 #------------------------------------------------------------
