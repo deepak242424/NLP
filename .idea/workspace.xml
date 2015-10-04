@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="63dfe846-2d9d-4e0f-a000-163b8cd884fe" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\Dropbox\Acads\Sem 9\NLP\Assignment 1\code\NLP\.idea\modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dropbox\Acads\Sem 9\NLP\Assignment 1\code\NLP\.idea\vcs.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_laven.py" afterPath="$PROJECT_DIR$/test_laven.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/globaldefs.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordspellcheck_main.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/NLP.iml" afterPath="$PROJECT_DIR$/.idea/NLP.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phrasespellcheck.py" afterPath="$PROJECT_DIR$/phrasespellcheck.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/splitlong.py" afterPath="$PROJECT_DIR$/splitlong.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test" afterPath="$PROJECT_DIR$/test" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/word.list" afterPath="$PROJECT_DIR$/word.list" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordspellcheck.py" afterPath="$PROJECT_DIR$/wordspellcheck.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="NLP.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,45 +36,83 @@
       <file leaf-file-name="wordspellcheck.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wordspellcheck.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.21643518">
-              <caret line="19" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.33333334">
+              <caret line="422" column="8" selection-start-line="422" selection-start-column="4" selection-end-line="422" selection-end-column="8" />
               <folding>
-                <element signature="e#879#996#0" expanded="false" />
-                <element signature="e#1029#1481#0" expanded="false" />
-                <element signature="e#1514#1694#0" expanded="false" />
-                <element signature="e#1737#3665#0" expanded="false" />
-                <element signature="e#3725#4472#0" expanded="false" />
-                <element signature="e#4506#4904#0" expanded="false" />
-                <element signature="e#5224#5521#0" expanded="false" />
-                <element signature="e#5549#5676#0" expanded="false" />
-                <element signature="e#5705#5835#0" expanded="false" />
-                <element signature="e#5867#6092#0" expanded="false" />
-                <element signature="e#6123#6316#0" expanded="false" />
-                <element signature="e#6361#6420#0" expanded="false" />
-                <element signature="e#6455#6693#0" expanded="false" />
-                <element signature="e#6723#7391#0" expanded="false" />
-                <element signature="e#7421#7974#0" expanded="false" />
-                <element signature="e#8927#9919#0" expanded="false" />
-                <element signature="e#10005#10891#0" expanded="false" />
-                <element signature="e#10954#11479#0" expanded="false" />
-                <element signature="e#11502#11700#0" expanded="false" />
-                <element signature="e#12088#12531#0" expanded="false" />
-                <element signature="e#12925#13530#1" expanded="false" />
-                <element signature="e#13531#13640#1" expanded="false" />
+                <element signature="e#389#430#0" expanded="false" />
+                <element signature="e#455#550#0" expanded="false" />
+                <element signature="e#582#919#0" expanded="false" />
+                <element signature="e#1111#1585#0" expanded="false" />
+                <element signature="e#1618#1809#0" expanded="false" />
+                <element signature="e#5405#5702#0" expanded="false" />
+                <element signature="e#5730#5857#0" expanded="false" />
+                <element signature="e#5886#6016#0" expanded="false" />
+                <element signature="e#6048#6273#0" expanded="false" />
+                <element signature="e#6304#6497#0" expanded="false" />
+                <element signature="e#6542#6601#0" expanded="false" />
+                <element signature="e#6636#6874#0" expanded="false" />
+                <element signature="e#7889#8453#0" expanded="false" />
+                <element signature="e#10664#11784#0" expanded="false" />
+                <element signature="e#11847#12372#0" expanded="false" />
+                <element signature="e#12395#12593#0" expanded="false" />
+                <element signature="e#12616#12972#0" expanded="false" />
+                <element signature="e#12996#13439#0" expanded="false" />
+                <element signature="e#13475#13476#0" expanded="false" />
+                <element signature="e#13510#14269#0" expanded="false" />
+                <element signature="e#14303#14494#0" expanded="false" />
+                <element signature="e#15094#15365#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_laven.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test_laven.py">
+      <file leaf-file-name="globaldefs.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/globaldefs.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="5" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="5" />
+              <folding>
+                <element signature="e#24#42#0" expanded="true" />
+                <element signature="e#251#649#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="phrasespellcheck.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/phrasespellcheck.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+              <caret line="141" column="54" selection-start-line="141" selection-start-column="54" selection-end-line="141" selection-end-column="54" />
               <folding>
-                <element signature="e#68#1060#0" expanded="false" />
-                <element signature="e#1061#1718#1" expanded="false" />
-                <element signature="e#1770#2377#0" expanded="false" />
+                <element signature="e#144#185#0" expanded="false" />
+                <element signature="e#242#473#0" expanded="false" />
+                <element signature="e#521#1160#0" expanded="false" />
+                <element signature="e#1219#1559#0" expanded="false" />
+                <element signature="e#1597#2007#0" expanded="false" />
+                <element signature="e#2039#2244#0" expanded="false" />
+                <element signature="e#2298#2437#0" expanded="false" />
+                <element signature="e#2462#2543#0" expanded="false" />
+                <element signature="e#2580#2795#0" expanded="false" />
+                <element signature="e#2832#3541#0" expanded="false" />
+                <element signature="e#3574#3751#0" expanded="false" />
+                <element signature="e#3778#3915#0" expanded="false" />
+                <element signature="e#3965#4189#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="splitlong.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/splitlong.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="38" column="19" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
+              <folding>
+                <element signature="e#65#106#0" expanded="false" />
+                <element signature="e#143#852#0" expanded="false" />
+                <element signature="e#885#1062#0" expanded="false" />
+                <element signature="e#1089#1226#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -88,11 +133,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/wordspellcheck.py" />
         <option value="$PROJECT_DIR$/save_likelihoods.py" />
         <option value="$PROJECT_DIR$/wsd.py" />
         <option value="$PROJECT_DIR$/sample_big.txt" />
+        <option value="$PROJECT_DIR$/pos.py" />
+        <option value="$PROJECT_DIR$/splitlong.py" />
+        <option value="$PROJECT_DIR$/wordspellcheck_main.py" />
+        <option value="$PROJECT_DIR$/globaldefs.py" />
         <option value="$PROJECT_DIR$/phrasespellcheck.py" />
+        <option value="$PROJECT_DIR$/wordspellcheck.py" />
       </list>
     </option>
   </component>
@@ -159,40 +208,6 @@
     <property name="recentsLimit" value="5" />
   </component>
   <component name="RunManager" selected="Python.phrasespellcheck">
-    <configuration default="false" name="wsd" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="NLP" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/wsd.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="save_likelihoods" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="NLP" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/save_likelihoods.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="phrasespellcheck" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -206,6 +221,79 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="NLP" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/phrasespellcheck.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="pos" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="NLP" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pos.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="wordspellcheck" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="NLP" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/wordspellcheck.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in setup" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/soundex-1.0" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="NLP" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/soundex-1.0/setup.py" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="splitlong" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="NLP" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/splitlong.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -332,16 +420,20 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="3">
-      <item index="0" class="java.lang.String" itemvalue="Python.wsd" />
-      <item index="1" class="java.lang.String" itemvalue="Python.save_likelihoods" />
-      <item index="2" class="java.lang.String" itemvalue="Python.phrasespellcheck" />
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Python.phrasespellcheck" />
+      <item index="1" class="java.lang.String" itemvalue="Python.pos" />
+      <item index="2" class="java.lang.String" itemvalue="Python.wordspellcheck" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in setup" />
+      <item index="4" class="java.lang.String" itemvalue="Python.splitlong" />
     </list>
     <recent_temporary>
-      <list size="3">
+      <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.phrasespellcheck" />
-        <item index="1" class="java.lang.String" itemvalue="Python.wsd" />
-        <item index="2" class="java.lang.String" itemvalue="Python.save_likelihoods" />
+        <item index="1" class="java.lang.String" itemvalue="Python.splitlong" />
+        <item index="2" class="java.lang.String" itemvalue="Python.wordspellcheck" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in setup" />
+        <item index="4" class="java.lang.String" itemvalue="Python.pos" />
       </list>
     </recent_temporary>
   </component>
@@ -359,14 +451,13 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.106770836" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.10885417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26979166" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.48645833" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -376,8 +467,29 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.48645833" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.10885417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39873418" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -387,7 +499,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/wordspellcheck.py</url>
-          <line>99</line>
+          <line>102</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -396,7 +508,7 @@
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="7" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -404,30 +516,73 @@
     <entry file="file://$PROJECT_DIR$/wordspellcheck.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="295" column="0" selection-start-line="295" selection-start-column="0" selection-end-line="295" selection-end-column="0" />
+          <folding>
+            <element signature="e#389#430#0" expanded="false" />
+            <element signature="e#455#550#0" expanded="false" />
+            <element signature="e#582#919#0" expanded="false" />
+            <element signature="e#1111#1585#0" expanded="false" />
+            <element signature="e#1618#1809#0" expanded="false" />
+            <element signature="e#5405#5702#0" expanded="false" />
+            <element signature="e#5730#5857#0" expanded="false" />
+            <element signature="e#5886#6016#0" expanded="false" />
+            <element signature="e#6048#6273#0" expanded="false" />
+            <element signature="e#6304#6497#0" expanded="false" />
+            <element signature="e#6542#6601#0" expanded="false" />
+            <element signature="e#6636#6874#0" expanded="false" />
+            <element signature="e#7889#8453#0" expanded="false" />
+            <element signature="e#10664#11784#0" expanded="false" />
+            <element signature="e#11847#12372#0" expanded="false" />
+            <element signature="e#12395#12593#0" expanded="false" />
+            <element signature="e#12616#12972#0" expanded="false" />
+            <element signature="e#12996#13439#0" expanded="false" />
+            <element signature="e#13475#13476#0" expanded="false" />
+            <element signature="e#13510#14269#0" expanded="false" />
+            <element signature="e#14303#14494#0" expanded="false" />
+            <element signature="e#15094#15365#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_laven.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+          <folding>
+            <element signature="e#68#1060#0" expanded="false" />
+            <element signature="e#1061#1718#1" expanded="false" />
+            <element signature="e#1770#2377#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wordspellcheck.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#879#996#0" expanded="false" />
-            <element signature="e#1029#1481#0" expanded="false" />
-            <element signature="e#1514#1694#0" expanded="false" />
-            <element signature="e#1737#3665#0" expanded="false" />
-            <element signature="e#3725#4472#0" expanded="false" />
-            <element signature="e#4506#4904#0" expanded="false" />
-            <element signature="e#5224#5521#0" expanded="false" />
-            <element signature="e#5549#5676#0" expanded="false" />
-            <element signature="e#5705#5835#0" expanded="false" />
-            <element signature="e#5867#6092#0" expanded="false" />
-            <element signature="e#6123#6316#0" expanded="false" />
-            <element signature="e#6361#6420#0" expanded="false" />
-            <element signature="e#6455#6693#0" expanded="false" />
-            <element signature="e#6723#7391#0" expanded="false" />
-            <element signature="e#7421#7974#0" expanded="false" />
-            <element signature="e#8927#9919#0" expanded="false" />
-            <element signature="e#10005#10891#0" expanded="false" />
-            <element signature="e#10954#11479#0" expanded="false" />
-            <element signature="e#11502#11700#0" expanded="false" />
-            <element signature="e#12088#12531#0" expanded="false" />
-            <element signature="e#12925#13530#1" expanded="false" />
-            <element signature="e#13531#13640#1" expanded="false" />
+            <element signature="e#389#430#0" expanded="false" />
+            <element signature="e#455#550#0" expanded="false" />
+            <element signature="e#582#919#0" expanded="false" />
+            <element signature="e#1111#1585#0" expanded="false" />
+            <element signature="e#1618#1809#0" expanded="false" />
+            <element signature="e#5405#5702#0" expanded="false" />
+            <element signature="e#5730#5857#0" expanded="false" />
+            <element signature="e#5886#6016#0" expanded="false" />
+            <element signature="e#6048#6273#0" expanded="false" />
+            <element signature="e#6304#6497#0" expanded="false" />
+            <element signature="e#6542#6601#0" expanded="false" />
+            <element signature="e#6636#6874#0" expanded="false" />
+            <element signature="e#7889#8453#0" expanded="false" />
+            <element signature="e#10664#11784#0" expanded="false" />
+            <element signature="e#11847#12372#0" expanded="false" />
+            <element signature="e#12395#12593#0" expanded="false" />
+            <element signature="e#12616#12972#0" expanded="false" />
+            <element signature="e#12996#13439#0" expanded="false" />
+            <element signature="e#13475#13476#0" expanded="false" />
+            <element signature="e#13510#14269#0" expanded="false" />
+            <element signature="e#14303#14494#0" expanded="false" />
+            <element signature="e#15094#15365#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -448,7 +603,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.67105263">
           <caret line="24" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -464,33 +618,105 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/soundex-1.0/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14782609">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/soundex-1.0/tests/test_soundex.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wordspellcheck_main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.073913045">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/globaldefs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="5" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="5" />
+          <folding>
+            <element signature="e#24#42#0" expanded="true" />
+            <element signature="e#251#649#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/splitlong.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="19" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
+          <folding>
+            <element signature="e#65#106#0" expanded="false" />
+            <element signature="e#143#852#0" expanded="false" />
+            <element signature="e#885#1062#0" expanded="false" />
+            <element signature="e#1089#1226#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/phrasespellcheck.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="141" column="54" selection-start-line="141" selection-start-column="54" selection-end-line="141" selection-end-column="54" />
+          <folding>
+            <element signature="e#144#185#0" expanded="false" />
+            <element signature="e#242#473#0" expanded="false" />
+            <element signature="e#521#1160#0" expanded="false" />
+            <element signature="e#1219#1559#0" expanded="false" />
+            <element signature="e#1597#2007#0" expanded="false" />
+            <element signature="e#2039#2244#0" expanded="false" />
+            <element signature="e#2298#2437#0" expanded="false" />
+            <element signature="e#2462#2543#0" expanded="false" />
+            <element signature="e#2580#2795#0" expanded="false" />
+            <element signature="e#2832#3541#0" expanded="false" />
+            <element signature="e#3574#3751#0" expanded="false" />
+            <element signature="e#3778#3915#0" expanded="false" />
+            <element signature="e#3965#4189#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/wordspellcheck.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21643518">
-          <caret line="19" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="422" column="8" selection-start-line="422" selection-start-column="4" selection-end-line="422" selection-end-column="8" />
           <folding>
-            <element signature="e#879#996#0" expanded="false" />
-            <element signature="e#1029#1481#0" expanded="false" />
-            <element signature="e#1514#1694#0" expanded="false" />
-            <element signature="e#1737#3665#0" expanded="false" />
-            <element signature="e#3725#4472#0" expanded="false" />
-            <element signature="e#4506#4904#0" expanded="false" />
-            <element signature="e#5224#5521#0" expanded="false" />
-            <element signature="e#5549#5676#0" expanded="false" />
-            <element signature="e#5705#5835#0" expanded="false" />
-            <element signature="e#5867#6092#0" expanded="false" />
-            <element signature="e#6123#6316#0" expanded="false" />
-            <element signature="e#6361#6420#0" expanded="false" />
-            <element signature="e#6455#6693#0" expanded="false" />
-            <element signature="e#6723#7391#0" expanded="false" />
-            <element signature="e#7421#7974#0" expanded="false" />
-            <element signature="e#8927#9919#0" expanded="false" />
-            <element signature="e#10005#10891#0" expanded="false" />
-            <element signature="e#10954#11479#0" expanded="false" />
-            <element signature="e#11502#11700#0" expanded="false" />
-            <element signature="e#12088#12531#0" expanded="false" />
-            <element signature="e#12925#13530#1" expanded="false" />
-            <element signature="e#13531#13640#1" expanded="false" />
+            <element signature="e#389#430#0" expanded="false" />
+            <element signature="e#455#550#0" expanded="false" />
+            <element signature="e#582#919#0" expanded="false" />
+            <element signature="e#1111#1585#0" expanded="false" />
+            <element signature="e#1618#1809#0" expanded="false" />
+            <element signature="e#5405#5702#0" expanded="false" />
+            <element signature="e#5730#5857#0" expanded="false" />
+            <element signature="e#5886#6016#0" expanded="false" />
+            <element signature="e#6048#6273#0" expanded="false" />
+            <element signature="e#6304#6497#0" expanded="false" />
+            <element signature="e#6542#6601#0" expanded="false" />
+            <element signature="e#6636#6874#0" expanded="false" />
+            <element signature="e#7889#8453#0" expanded="false" />
+            <element signature="e#10664#11784#0" expanded="false" />
+            <element signature="e#11847#12372#0" expanded="false" />
+            <element signature="e#12395#12593#0" expanded="false" />
+            <element signature="e#12616#12972#0" expanded="false" />
+            <element signature="e#12996#13439#0" expanded="false" />
+            <element signature="e#13475#13476#0" expanded="false" />
+            <element signature="e#13510#14269#0" expanded="false" />
+            <element signature="e#14303#14494#0" expanded="false" />
+            <element signature="e#15094#15365#0" expanded="false" />
           </folding>
         </state>
       </provider>

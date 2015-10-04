@@ -10,11 +10,14 @@ import cPickle
 import numpy as np
 import os
 import math
+from metaphone import doublemetaphone
+import globaldefs
+
 
 def words(text): return re.findall('[a-z]+', text.lower())
 
 def getWordList():
-    s = words(file('word.list').read())
+    s = words(file(globaldefs.DICTIONARY_PATH).read())
     out = dict.fromkeys(s, 0)
     return out
 
@@ -31,24 +34,24 @@ def savePriorHashTable():
     cPickle.dump(prior_hashtable, f, protocol=cPickle.HIGHEST_PROTOCOL)
     f.close()
 
-def loadPriorHashTable():
-    f = open('prior_hashtable.save', 'rb')
-    prior_hashtable = cPickle.load(f)
-    f.close()
-    return prior_hashtable
+# def loadPriorHashTable():
+#     f = open('prior_hashtable.save', 'rb')
+#     prior_hashtable = cPickle.load(f)
+#     f.close()
+#     return prior_hashtable
 
 def edit_distance_1(text):
     #Returns all words at edit distance 1 from the input word,"text"
     s = [(text[:i], text[i:]) for i in range(len(text) + 1)]
     deletion    = [a + b[1:] for a, b in s if b]
     transposition = [a + b[1] + b[0] + b[2:] for a, b in s if len(b)>1]
-    replacement   = [a + c + b[1:] for a, b in s for c in alphabet if b]
-    insertion   = [a + c + b     for a, b in s for c in alphabet]
+    replacement   = [a + c + b[1:] for a, b in s for c in globaldefs.alphabet if b]
+    insertion   = [a + c + b     for a, b in s for c in globaldefs.alphabet]
     return set(deletion + transposition + replacement + insertion)
 
 def edit_distance_2(text):
     #Returns all words at edit distance 2 from the input word,"text"
-    return set(e2 for e1 in edit_distance_1_transform(text) for e2 in edit_distance_2(e1) if e2 in prior_hashtable)
+    return set(e2 for e1 in edit_distance_1_transform(text) for e2 in edit_distance_2(e1) if e2 in globaldefs.prior_hashtable)
 
 def edit_distance_1_transform(text):
     #Returns all words at edit distance 1 from the input word,"text"
@@ -81,7 +84,7 @@ def edit_distance_1_transform(text):
 
 #    substitution   = [a + c + b[1:] for a, b in s for c in alphabet if b]
     for a, b in s:
-        for c in alphabet[0:25]:
+        for c in globaldefs.alphabet[0:25]:
             if b:
                 word = a + c + b[1:]
                 if word in edit_dict:
@@ -91,7 +94,7 @@ def edit_distance_1_transform(text):
 
 #    insertion   = [a + c + b     for a, b in s for c in alphabet]
     for a, b in s:
-        for c in alphabet[0:25]:
+        for c in globaldefs.alphabet[0:25]:
             if a:
                 word = a + c + b
                 if word in edit_dict:
@@ -116,7 +119,7 @@ def edit_distance_2_transform(orig_word, edit_dict1):
 
     for key,val in edit_dict1.iteritems():
         edit_dict_test = edit_distance_1_transform(key)
-        available_keys = prior_hashtable_keys.intersection(set(edit_dict_test.keys()))-set(orig_word)
+        available_keys = globaldefs.prior_hashtable_keys.intersection(set(edit_dict_test.keys()))-set(orig_word)
         for key_bad in list(set(edit_dict_test.keys()) - set(available_keys)):
             edit_dict_test.pop(key_bad,None)
 
@@ -128,24 +131,24 @@ def edit_distance_2_transform(orig_word, edit_dict1):
                     edit_dict2[key_test].append(val_elem+val_test_elem)
     return edit_dict2
 
-def getConfusionMatrices():
-    rev_mat = np.loadtxt(open('confusion/rev.txt','r'),delimiter=' ',skiprows=0)+1
-    ins_mat = np.loadtxt(open('confusion/ins.txt','r'),delimiter=' ',skiprows=0)+1
-    del_mat = np.loadtxt(open('confusion/del.txt','r'),delimiter=' ',skiprows=0)+1
-    sub_mat = np.loadtxt(open('confusion/sub.txt','r'),delimiter=' ',skiprows=0).T+1
-    toreturn = (rev_mat,ins_mat,del_mat,sub_mat)
-    return toreturn
+# def getConfusionMatrices():
+#     rev_mat = np.loadtxt(open('confusion/rev.txt','r'),delimiter=' ',skiprows=0)+1
+#     ins_mat = np.loadtxt(open('confusion/ins.txt','r'),delimiter=' ',skiprows=0)+1
+#     del_mat = np.loadtxt(open('confusion/del.txt','r'),delimiter=' ',skiprows=0)+1
+#     sub_mat = np.loadtxt(open('confusion/sub.txt','r'),delimiter=' ',skiprows=0).T+1
+#     toreturn = (rev_mat,ins_mat,del_mat,sub_mat)
+#     return toreturn
 
-def getBigramMatrix():
-
-    bigrammat = np.zeros((26,26))
-    f = open('count_2l.txt','r')
-    x = csv.reader(f,delimiter='\t')
-    for elem in list(x):
-        i1 = alphabet.index(elem[0][0])
-        i2 = alphabet.index(elem[0][1])
-        bigrammat[i1][i2]=int(elem[1])
-    return bigrammat
+# def getBigramMatrix():
+#
+#     bigrammat = np.zeros((26,26))
+#     f = open('count_2l.txt','r')
+#     x = csv.reader(f,delimiter='\t')
+#     for elem in list(x):
+#         i1 = alphabet.index(elem[0][0])
+#         i2 = alphabet.index(elem[0][1])
+#         bigrammat[i1][i2]=int(elem[1])
+#     return bigrammat
 
 def vector(in_file):
    lines = in_file.readlines()
@@ -209,23 +212,30 @@ def mergedict(dict1, dict2):
 
 def Pchange(operation):
     #Given a sequence of operations, computes its probability of occurrence using the confusion matrices
-    index1 = alphabet.index(operation[1])
-    index2 = alphabet.index(operation[2])
+    if operation[1] in globaldefs.alphabet:
+        index1 = globaldefs.alphabet.index(operation[1])
+    else:
+        index1 = 0
+    if operation[2] in globaldefs.alphabet:
+        index2 = globaldefs.alphabet.index(operation[2])
+    else:
+        index2 = 0
+
     if operation[0]=='d':
         if index1 == 26:
-            out = del_mat[index1][index2] / sum(bigrammat[:][index2])
+            out = globaldefs.del_mat[index1][index2] / sum(globaldefs.bigrammat[:][index2])
         else:
-            out = del_mat[index1][index2] / bigrammat[index1][index2]
+            out = globaldefs.del_mat[index1][index2] / globaldefs.bigrammat[index1][index2]
     elif operation[0]=='i':
-        out = ins_mat[index1][index2] / sum(bigrammat[index2][:])
+        out = globaldefs.ins_mat[index1][index2] / sum(globaldefs.bigrammat[index2][:])
     elif operation[0]=='s':
-        out = sub_mat[index1][index2] / sum(bigrammat[index1][:])
+        out = globaldefs.sub_mat[index1][index2] / sum(globaldefs.bigrammat[index1][:])
     else:
-        out = rev_mat[index1][index2] / bigrammat[index1][index2]
+        out = globaldefs.rev_mat[index1][index2] / globaldefs.bigrammat[index1][index2]
     return out
 
 def getBayesian0(word):
-    prior_hashtable = loadPriorHashTable()
+    prior_hashtable = globaldefs.loadPriorHashTable()
     candidates = available([word], prior_hashtable) or available(edit_distance_1(word), prior_hashtable) or edit_distance_1(word) or [word]
     print max(candidates, key=prior_hashtable.get)
     final_list = []
@@ -238,16 +248,14 @@ def getBayesian0(word):
 
     return max(candidates, key=prior_hashtable.get)
 
-def getBayesian1(word):
-    if word in prior_hashtable:
-        print "The word, "+ word+ " is correct."
+def getBayesian1(word, numsuggestions=5):
     edit1worddict = edit_distance_1_transform(word)
     edit2worddict = edit_distance_2_transform(word, edit1worddict)
 
     probabdict = {}
 
     #Remove incorrect edit 1 words
-    available_keys = prior_hashtable_keys.intersection(set(edit1worddict.keys()))
+    available_keys = globaldefs.prior_hashtable_keys.intersection(set(edit1worddict.keys()))
     for key_bad in list(set(edit1worddict.keys()) - set(available_keys)):
         edit1worddict.pop(key_bad,None)
 
@@ -265,7 +273,13 @@ def getBayesian1(word):
         for val in vals:
             p += Pchange(val[0:3])*Pchange(val[3:])
         probabdict[edit2word]=p
-    return probabdict
+
+    if word in globaldefs.prior_hashtable:
+        # print "The word, "+ word+ " is correct."
+        probabdict[word] = 1
+
+    sorted_probab_dict = sorted(probabdict.items(), key=itemgetter(1),reverse=True)
+    return sorted_probab_dict[0:numsuggestions]
 
 def levenshtein(s1, s2):
     if len(s1) < len(s2):
@@ -286,7 +300,7 @@ def levenshtein(s1, s2):
             insertions = previous_row[j + 1] + costs[0] # j+1 instead of j since previous_row and current_row are one character longer
             deletions = current_row[j] + costs[1]       # than s2
             substitutions = previous_row[j] + costs[2]*(c1 != c2)
-            min_index, min_value = min(enumerate([insertions,deletions,substitutions]), key=operator.itemgetter(1))
+            min_index, min_value = min(enumerate([insertions,deletions,substitutions]), key=itemgetter(1))
             levenmat[i][j] = min_value
 
             current_row.append(min_value)
@@ -294,35 +308,36 @@ def levenshtein(s1, s2):
         previous_row = current_row
     return levenmat[-1][-1]
 
-def gen_candidates(wrd, all_bigrams_dict, all_trigrams_dict, inverted_idx_dic):
-    trigrams = get_trigrams(wrd)
+def gen_candidates(wrd, all_bigrams_dict, all_trigrams_dict, inverted_idx_dic, mode):
     bigrams = get_bigrams(wrd)
-
     bi_matchset = set()
-    tri_matchset = set()
-
     for bigram in bigrams:
-        for word_match in inverted_idx_dic[bigram]:
-            bi_matchset.add(word_match)
-
-    for trigram in trigrams:
-        for word_match in inverted_idx_dic[trigram]:
-            tri_matchset.add(word_match)
-
+        if bigram in inverted_idx_dic:
+            for word_match in inverted_idx_dic[bigram]:
+                bi_matchset.add(word_match)
     bi_scores = dict()
-    tri_scores = dict()
-
     for bi_match in bi_matchset:
         lis2 = all_bigrams_dict[bi_match]
         bi_scores[bi_match] = jaccard(bigrams,lis2)
-
-    for tri_match in tri_matchset:
-        lis2 = all_trigrams_dict[tri_match]
-        tri_scores[tri_match] = jaccard(trigrams,lis2)
-
     bi_scores_sorted = sorted(bi_scores.items(), key=itemgetter(1),reverse=True)
-    tri_scores_sorted = sorted(tri_scores.items(), key=itemgetter(1),reverse=True)
-    return (bi_scores_sorted[:5], tri_scores_sorted[:5])
+
+    if mode == "bitri":
+        tri_matchset = set()
+        trigrams = get_trigrams(wrd)
+        for trigram in trigrams:
+            if trigram in inverted_idx_dic:
+                for word_match in inverted_idx_dic[trigram]:
+                    tri_matchset.add(word_match)
+        tri_scores = dict()
+        for tri_match in tri_matchset:
+            lis2 = all_trigrams_dict[tri_match]
+            tri_scores[tri_match] = jaccard(trigrams,lis2)
+        tri_scores_sorted = sorted(tri_scores.items(), key=itemgetter(1),reverse=True)
+
+    if mode == "bitri":
+        return (bi_scores_sorted[:5], tri_scores_sorted[:5])
+    else:
+        return (bi_scores_sorted[:5])
 
 def gen_inverted_idx(all_bigram_dict, all_trigram_dict):
     temp_idx_dic = {}
@@ -349,7 +364,7 @@ def loadgrams():
     return (in_bigrams, in_trigrams, inverted_idx_dic)
 
 def savegrams():
-    in_words = words(file('word.list').read())
+    in_words = words(file(globaldefs.DICTIONARY_PATH).read())
     in_bigrams, in_trigrams = get_bitri(in_words)
     inverted_idx_dic = gen_inverted_idx(in_bigrams, in_trigrams)
 
@@ -374,41 +389,75 @@ def cleanbrown():
         f.close()
     fout.close()
 
-#----------------Global variables----------------------------
-alphabet = 'abcdefghijklmnopqrstuvwxyz~'
-prior_hashtable = loadPriorHashTable()
-prior_hashtable_keys = set(prior_hashtable.keys())
-(rev_mat,ins_mat,del_mat,sub_mat) = getConfusionMatrices()
-bigrammat = getBigramMatrix()
+def getphoneticsuggestions():
+    1
+
+def saveMetaphoneIndices():
+    wordphonedict = {}
+    bigrams_phone = {}
+    inverted_bigram_phone = {}
+    in_words = words(file(globaldefs.DICTIONARY_PATH).read())
+    for count,word in enumerate(in_words):
+        phone_rep = doublemetaphone(word)[0]
+        wordphonedict[word] = phone_rep
+        bigrams_phone[word] = get_bigrams(phone_rep)
+        for bigram in bigrams_phone[word]:
+            if bigram not in inverted_bigram_phone:
+                inverted_bigram_phone[bigram] = []
+            inverted_bigram_phone[bigram].append(word)
+
+        if count % 10000 == 0:
+           print count
+
+    towrite = (wordphonedict, bigrams_phone, inverted_bigram_phone)
+    f = file('phone_indices.save', 'wb')
+    cPickle.dump(towrite, f, protocol=cPickle.HIGHEST_PROTOCOL)
+    f.close()
+
+def loadMetaPhoneIndices():
+    f = open('phone_indices.save', 'rb')
+    (wordphonedict, bigrams_phone, inverted_bigram_phone) = cPickle.load(f)
+    f.close()
+    return (wordphonedict, bigrams_phone, inverted_bigram_phone)
+
+def getWordSuggestions(input_word, numsuggestions=5):
+        x = getBayesian1(input_word,numsuggestions)
+        # (bi_scores_sorted, tri_scores_sorted) = gen_candidates(input_word, in_bigrams, in_trigrams, inverted_idx_dic,"bitri")
+        # print "Word: ",input_word
+        # print "Bigram matches: ", bi_scores_sorted
+        # print "Trigram matches: ", tri_scores_sorted
+        # return x[0:numsuggestions]
+        out = []
+        for i in range(min(len(x),numsuggestions)):
+            out.append(x[i][0])
+        return out
+
+def getWordSuggestionsForFile(filename,numsuggestions=5):
+    suggestionDict = {}
+    with open(filename, 'rb') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            input_word = row[0]
+            suggestionDict[input_word]=getWordSuggestions(input_word, numsuggestions)
+    f.close()
+    return suggestionDict
+
+# ---------------Global variables----------------------------
+#----------------Run only in main----------------------------
+if __name__ == "__main__":
+    # DICTIONARY_PATH = 'word.list'
+    # alphabet = 'abcdefghijklmnopqrstuvwxyz~'
+    # prior_hashtable = loadPriorHashTable()
+    # prior_hashtable_keys = set(prior_hashtable.keys())
+    # (rev_mat,ins_mat,del_mat,sub_mat) = getConfusionMatrices()
+    # bigrammat = getBigramMatrix()
+    # print "Loading dictionaries..."
+    # #(in_bigrams, in_trigrams, inverted_idx_dic) = loadgrams()
+    # print "Dictionaries loaded!"
+
+    if len(sys.argv) != 2:
+        print "usage: python wordspellcheck.py <input_file>"
+        sys.exit(1)
+
+    print getWordSuggestionsForFile(sys.argv[1])
 #------------------------------------------------------------
-
-
-#------------------Main--------------------#
-
-'''
-if len(sys.argv) != 2:
-    print "usage: python wordspellcheck.py <input_file>"
-    sys.exit(1)
-print "Loading dictionaries..."
-(in_bigrams, in_trigrams, inverted_idx_dic) = loadgrams()
-print "Dictionaries loaded!"
-
-#savegrams()
-with open(sys.argv[1], 'rb') as f:
-    reader = csv.reader(f)
-    for row in reader:
-        input_word = row[0]
-        (bi_scores_sorted, tri_scores_sorted) = gen_candidates(input_word, in_bigrams, in_trigrams, inverted_idx_dic)
-        print "Word: ",input_word
-        print "Bigram matches: ", bi_scores_sorted
-        print "Trigram matches: ", tri_scores_sorted
-'''
-'''
-testdict = {}
-ed1 =  edit_distance_1_transform('helso')
-print edit_distance_2_transform('hello', ed1)
-'''
-
-x = getBayesian1("resoltion")
-sorted_x = sorted(x.items(), key=itemgetter(1),reverse=True)
-print sorted_x

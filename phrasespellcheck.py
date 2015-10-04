@@ -3,6 +3,9 @@ import re
 import cPickle
 import math
 import operator
+import wordspellcheck
+import csv
+import globaldefs
 
 def words(text): return re.findall('[a-z]+', text.lower())
 
@@ -58,8 +61,9 @@ def loadLikelihoodDict():
     pickle_file.close()
     return toreturn
 
-def getWordSuggestions(incorrect):
-    suggestions = ['giant', 'ant', 'meant', 'stunt']
+def getWordSuggestions(incorrect,numsuggestions=5):
+#    suggestions = ['giant', 'ant', 'meant', 'stunt']
+    suggestions = wordspellcheck.getWordSuggestions(incorrect)
     return suggestions
 
 def getVocabSet():
@@ -71,35 +75,103 @@ def getVocabSet():
 def getIncorrectWords(phrase):
     words_phrase = set(words(phrase))
     legit_words = getVocabSet()
-    print legit_words.intersection(words_phrase)
+    # print legit_words.intersection(words_phrase)
     incorrectword = words_phrase - legit_words.intersection(words_phrase)
     return incorrectword
 
-#----------------------Main------------------------------
+def splitlong(word, in_words):
+    if word in in_words:
+        return word
+    legitchars = ['a','i']
+    legitchars2 = ['a','e','i','o','u']
+    splits = []
+    nextsplit = []
+    found1 = False
+    for i in reversed(range(len(word) + 1)):
+        splits.append([(word[:i], word[i:])])
+        toreturn = []
+#        if (i>1 and word[:i] in in_words) or (i==1 and word[:i] in legitchars):
+        if word[:i] in in_words:
+            toreturn.append(word[:i])
+            nextsplit = [splitlong(word[i:], in_words)]
+            for j in nextsplit:
+               toreturn.append(j)
+
+            if not (-1 in toreturn):
+                found1 = True
+                break
+    if not found1:
+        return -1
+    else:
+        return toreturn
+
+def split2string(in_list):
+    outsplit = ''
+    for i in in_list:
+        if not isinstance(i, list):
+            outsplit += " " + i
+        else:
+            outsplit += split2string(i)
+    return outsplit
+
+def splitWord(word):
+    in_words = words(file('word.list').read())
+    out = splitlong('goodworkisrewarded', in_words)
+    out = split2string(out)
+    return out
+
+def getPhraseSuggestionsFromFile(filename):
+    suggestionDict = {}
+    with open(filename, 'rb') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            phrase = str(row)
+            getPhraseSuggestions(phrase)
+    f.close()
+    return suggestionDict
+
+def getPhraseSuggestions(phrase):
+    incorrectwords = list(getIncorrectWords(phrase))
+    #Change this!
+    suggestionScoreDict = {}    #Key: Word, Value: Dictionary (Key: Suggestion, Value = score)
+    sortedsuggestionScoreDict = {}
+    if len(incorrectwords) == 0:
+        incorrectwords = list(set(phrase.split()))
+
+    for incorrectword in incorrectwords:
+        suggestions = getWordSuggestions(incorrectword)
+        suggestionScoreDict[incorrectword] = dict.fromkeys(suggestions)
+#        output_likelihoods = dict.fromkeys(suggestions)
+        for suggestion in suggestions:
+            if suggestion in likelihoods_dict:
+                suggestionScoreDict[incorrectword][suggestion] = 0  #Change to prior, no?
+#                print set(likelihoods_dict[suggestion].keys()).intersection(get_neighbours(words(phrase), incorrectword, window))
+                for testnbr in get_neighbours(words(phrase), incorrectword, window):
+                    if testnbr in likelihoods_dict[suggestion]:
+                        suggestionScoreDict[incorrectword][suggestion] += math.log(likelihoods_dict[suggestion][testnbr])
+                    else:
+                        suggestionScoreDict[incorrectword][suggestion] += math.log(smooth_constant/float((sum_count_dict[suggestion]+smooth_constant*vocab_size)))
+            else:
+                suggestionScoreDict[incorrectword][suggestion] = -float("inf")
+            sortedsuggestionScoreDict[incorrectword] = sorted(suggestionScoreDict[incorrectword].items(), key=operator.itemgetter(1), reverse=True)
+    print sortedsuggestionScoreDict
+
+#----------------Global variables----------------------------
+# DICTIONARY_PATH = 'word.list'
+# alphabet = 'abcdefghijklmnopqrstuvwxyz~'
+# prior_hashtable = wordspellcheck.loadPriorHashTable()
+# prior_hashtable_keys = set(prior_hashtable.keys())
+# (rev_mat,ins_mat,del_mat,sub_mat) = wordspellcheck.getConfusionMatrices()
+# bigrammat = wordspellcheck.getBigramMatrix()
+# # (in_bigrams, in_trigrams, inverted_idx_dic) = wordspellcheck.loadgrams()
+
 window = 5
 smooth_constant = 1e-5
-phrase = "a geant leap for mankind"
-#saveLikelihoodDict(5)
-(likelihoods_dict, sum_count_dict) = loadLikelihoodDict()
-incorrectwords = getIncorrectWords(phrase)
 vocab_size = len(getVocabSet())
+(likelihoods_dict, sum_count_dict) = loadLikelihoodDict()
+#------------------------------------------------------------
 
-#Change this!
-suggestions = getWordSuggestions(incorrectwords)
-output_likelihoods = dict.fromkeys(suggestions)
 
-for incorrectword in incorrectwords:
-    for suggestion in suggestions:
-        if suggestion in likelihoods_dict:
-            output_likelihoods[suggestion] = 0
-            print set(likelihoods_dict[suggestion].keys()).intersection(get_neighbours(words(phrase), incorrectword, window))
-            for testnbr in get_neighbours(words(phrase), incorrectword, window):
-
-                if testnbr in likelihoods_dict[suggestion]:
-                    print math.log(likelihoods_dict[suggestion][testnbr])
-                    output_likelihoods[suggestion] += math.log(likelihoods_dict[suggestion][testnbr])
-                else:
-                    print math.log(smooth_constant/float((sum_count_dict[suggestion]+smooth_constant*vocab_size)))
-                    output_likelihoods[suggestion] += math.log(smooth_constant/float((sum_count_dict[suggestion]+smooth_constant*vocab_size)))
-    sorted_x = sorted(output_likelihoods.items(), key=operator.itemgetter(1), reverse=True)
-    print sorted_x
+#----------------------Main------------------------------
+#saveLikelihoodDict(5)
+getPhraseSuggestionsFromFile('test2')

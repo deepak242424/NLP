@@ -19,7 +19,7 @@ def splitlong(word, in_words):
             toreturn.append(word[:i])
             nextsplit = [splitlong(word[i:], in_words)]
             for j in nextsplit:
-                toreturn.append(j)
+               toreturn.append(j)
 
             if not (-1 in toreturn):
                 found1 = True
@@ -28,7 +28,20 @@ def splitlong(word, in_words):
         return -1
     else:
         return toreturn
-in_words = words(file('word.list').read())
-#print splitlong('footballhalloffame', in_words)
-#print splitlong('giantcell', in_words)
-print splitlong('iamfinehowareyou', in_words)
+
+def split2string(in_list):
+    outsplit = ''
+    for i in in_list:
+        if not isinstance(i, list):
+            outsplit += " " + i
+        else:
+            outsplit += split2string(i)
+    return outsplit
+
+def splitWord(word):
+    in_words = words(file('word.list').read())
+    out = splitlong('goodworkisrewarded', in_words)
+    out = split2string(out)
+    return out
+
+print splitWord("beyotch")
