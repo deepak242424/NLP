@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="63dfe846-2d9d-4e0f-a000-163b8cd884fe" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\Dropbox\Acads\Sem 9\NLP\Assignment 1\code\NLP\.idea\modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dropbox\Acads\Sem 9\NLP\Assignment 1\code\NLP\.idea\vcs.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_laven.py" afterPath="$PROJECT_DIR$/test_laven.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pos_mahesh.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/postag.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/brownuntagged.txt" afterPath="$PROJECT_DIR$/brownuntagged.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/likelihoods_WSD.save" afterPath="$PROJECT_DIR$/likelihoods_WSD.save" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phrasespellcheck.py" afterPath="$PROJECT_DIR$/phrasespellcheck.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordspellcheck.py" afterPath="$PROJECT_DIR$/wordspellcheck.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="NLP.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,39 +30,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="wordspellcheck.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/wordspellcheck.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.21643518">
-              <caret line="19" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-              <folding>
-                <element signature="e#879#996#0" expanded="false" />
-                <element signature="e#1029#1481#0" expanded="false" />
-                <element signature="e#1514#1694#0" expanded="false" />
-                <element signature="e#1737#3665#0" expanded="false" />
-                <element signature="e#3725#4472#0" expanded="false" />
-                <element signature="e#4506#4904#0" expanded="false" />
-                <element signature="e#5224#5521#0" expanded="false" />
-                <element signature="e#5549#5676#0" expanded="false" />
-                <element signature="e#5705#5835#0" expanded="false" />
-                <element signature="e#5867#6092#0" expanded="false" />
-                <element signature="e#6123#6316#0" expanded="false" />
-                <element signature="e#6361#6420#0" expanded="false" />
-                <element signature="e#6455#6693#0" expanded="false" />
-                <element signature="e#6723#7391#0" expanded="false" />
-                <element signature="e#7421#7974#0" expanded="false" />
-                <element signature="e#8927#9919#0" expanded="false" />
-                <element signature="e#10005#10891#0" expanded="false" />
-                <element signature="e#10954#11479#0" expanded="false" />
-                <element signature="e#11502#11700#0" expanded="false" />
-                <element signature="e#12088#12531#0" expanded="false" />
-                <element signature="e#12925#13530#1" expanded="false" />
-                <element signature="e#13531#13640#1" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="test_laven.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_laven.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -68,6 +39,46 @@
                 <element signature="e#68#1060#0" expanded="false" />
                 <element signature="e#1061#1718#1" expanded="false" />
                 <element signature="e#1770#2377#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="phrasespellcheck.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/phrasespellcheck.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="postag.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/postag.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.8717672">
+              <caret line="154" column="0" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#196#468#0" expanded="false" />
+                <element signature="e#503#663#0" expanded="false" />
+                <element signature="e#3264#4125#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pos_mahesh.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pos_mahesh.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="116" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#196#468#0" expanded="false" />
+                <element signature="e#503#663#0" expanded="false" />
+                <element signature="e#3346#4207#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -88,11 +99,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/wordspellcheck.py" />
         <option value="$PROJECT_DIR$/save_likelihoods.py" />
         <option value="$PROJECT_DIR$/wsd.py" />
         <option value="$PROJECT_DIR$/sample_big.txt" />
+        <option value="$PROJECT_DIR$/wordspellcheck.py" />
         <option value="$PROJECT_DIR$/phrasespellcheck.py" />
+        <option value="$PROJECT_DIR$/pos_mahesh.py" />
+        <option value="$PROJECT_DIR$/postag.py" />
       </list>
     </option>
   </component>
@@ -100,10 +113,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="65" />
+    <option name="y" value="-4" />
+    <option name="width" value="1855" />
+    <option name="height" value="1084" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -157,8 +170,9 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
+    <property name="FullScreen" value="false" />
   </component>
-  <component name="RunManager" selected="Python.phrasespellcheck">
+  <component name="RunManager" selected="Python.postag">
     <configuration default="false" name="wsd" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -206,6 +220,40 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="NLP" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/phrasespellcheck.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="postag" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="NLP" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/postag.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="pos_mahesh" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="NLP" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pos_mahesh.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -332,20 +380,27 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="3">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.wsd" />
       <item index="1" class="java.lang.String" itemvalue="Python.save_likelihoods" />
       <item index="2" class="java.lang.String" itemvalue="Python.phrasespellcheck" />
+      <item index="3" class="java.lang.String" itemvalue="Python.postag" />
+      <item index="4" class="java.lang.String" itemvalue="Python.pos_mahesh" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Python.phrasespellcheck" />
-        <item index="1" class="java.lang.String" itemvalue="Python.wsd" />
-        <item index="2" class="java.lang.String" itemvalue="Python.save_likelihoods" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.postag" />
+        <item index="1" class="java.lang.String" itemvalue="Python.pos_mahesh" />
+        <item index="2" class="java.lang.String" itemvalue="Python.phrasespellcheck" />
+        <item index="3" class="java.lang.String" itemvalue="Python.wsd" />
+        <item index="4" class="java.lang.String" itemvalue="Python.save_likelihoods" />
       </list>
     </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="63dfe846-2d9d-4e0f-a000-163b8cd884fe" name="Default" comment="" />
@@ -356,28 +411,36 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.106770836" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26979166" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10644105" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13987474" sideWeight="0.48908296" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985386" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35699373" sideWeight="0.48908296" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39873418" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39770356" sideWeight="0.510917" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -395,47 +458,31 @@
           <line>76</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/pos_mahesh.py</url>
+          <line>8</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/pos_mahesh.py</url>
+          <line>140</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/pos_mahesh.py</url>
+          <line>97</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="7" />
+      <option name="time" value="18" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/wordspellcheck.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#879#996#0" expanded="false" />
-            <element signature="e#1029#1481#0" expanded="false" />
-            <element signature="e#1514#1694#0" expanded="false" />
-            <element signature="e#1737#3665#0" expanded="false" />
-            <element signature="e#3725#4472#0" expanded="false" />
-            <element signature="e#4506#4904#0" expanded="false" />
-            <element signature="e#5224#5521#0" expanded="false" />
-            <element signature="e#5549#5676#0" expanded="false" />
-            <element signature="e#5705#5835#0" expanded="false" />
-            <element signature="e#5867#6092#0" expanded="false" />
-            <element signature="e#6123#6316#0" expanded="false" />
-            <element signature="e#6361#6420#0" expanded="false" />
-            <element signature="e#6455#6693#0" expanded="false" />
-            <element signature="e#6723#7391#0" expanded="false" />
-            <element signature="e#7421#7974#0" expanded="false" />
-            <element signature="e#8927#9919#0" expanded="false" />
-            <element signature="e#10005#10891#0" expanded="false" />
-            <element signature="e#10954#11479#0" expanded="false" />
-            <element signature="e#11502#11700#0" expanded="false" />
-            <element signature="e#12088#12531#0" expanded="false" />
-            <element signature="e#12925#13530#1" expanded="false" />
-            <element signature="e#13531#13640#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_laven.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="65" selection-start-line="21" selection-start-column="65" selection-end-line="21" selection-end-column="65" />
+          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
           <folding>
             <element signature="e#68#1060#0" expanded="false" />
             <element signature="e#1061#1718#1" expanded="false" />
@@ -444,11 +491,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/gen_matrix.py">
+    <entry file="file://$PROJECT_DIR$/phrasespellcheck.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67105263">
-          <caret line="24" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="104" column="18" selection-start-line="104" selection-start-column="18" selection-end-line="104" selection-end-column="18" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/postag.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pos_mahesh.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#196#468#0" expanded="false" />
+            <element signature="e#503#663#0" expanded="false" />
+            <element signature="e#3346#4207#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wordspellcheck.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#332#373#0" expanded="false" />
+            <element signature="e#398#478#0" expanded="false" />
+            <element signature="e#510#847#0" expanded="false" />
+            <element signature="e#879#996#0" expanded="false" />
+            <element signature="e#1029#1481#0" expanded="false" />
+            <element signature="e#1514#1694#0" expanded="false" />
+            <element signature="e#1737#3665#0" expanded="false" />
+            <element signature="e#3725#4472#0" expanded="false" />
+            <element signature="e#4506#4904#0" expanded="false" />
+            <element signature="e#4933#5197#0" expanded="false" />
+            <element signature="e#5223#5520#0" expanded="false" />
+            <element signature="e#5548#5675#0" expanded="false" />
+            <element signature="e#5704#5834#0" expanded="false" />
+            <element signature="e#5866#6091#0" expanded="false" />
+            <element signature="e#6122#6315#0" expanded="false" />
+            <element signature="e#6360#6419#0" expanded="false" />
+            <element signature="e#6454#6692#0" expanded="false" />
+            <element signature="e#6722#7390#0" expanded="false" />
+            <element signature="e#7420#7973#0" expanded="false" />
+            <element signature="e#8003#8895#0" expanded="false" />
+            <element signature="e#8926#9918#0" expanded="false" />
+            <element signature="e#10004#10890#0" expanded="false" />
+            <element signature="e#10953#11478#0" expanded="false" />
+            <element signature="e#11501#11699#0" expanded="false" />
+            <element signature="e#11722#12063#0" expanded="false" />
+            <element signature="e#12087#12530#0" expanded="false" />
+            <element signature="e#12924#13529#1" expanded="false" />
+            <element signature="e#13530#13639#1" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -466,31 +571,132 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wordspellcheck.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21643518">
-          <caret line="19" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="e#332#373#0" expanded="false" />
+            <element signature="e#398#478#0" expanded="false" />
+            <element signature="e#510#847#0" expanded="false" />
             <element signature="e#879#996#0" expanded="false" />
             <element signature="e#1029#1481#0" expanded="false" />
             <element signature="e#1514#1694#0" expanded="false" />
             <element signature="e#1737#3665#0" expanded="false" />
             <element signature="e#3725#4472#0" expanded="false" />
             <element signature="e#4506#4904#0" expanded="false" />
-            <element signature="e#5224#5521#0" expanded="false" />
-            <element signature="e#5549#5676#0" expanded="false" />
-            <element signature="e#5705#5835#0" expanded="false" />
-            <element signature="e#5867#6092#0" expanded="false" />
-            <element signature="e#6123#6316#0" expanded="false" />
-            <element signature="e#6361#6420#0" expanded="false" />
-            <element signature="e#6455#6693#0" expanded="false" />
-            <element signature="e#6723#7391#0" expanded="false" />
-            <element signature="e#7421#7974#0" expanded="false" />
-            <element signature="e#8927#9919#0" expanded="false" />
-            <element signature="e#10005#10891#0" expanded="false" />
-            <element signature="e#10954#11479#0" expanded="false" />
-            <element signature="e#11502#11700#0" expanded="false" />
-            <element signature="e#12088#12531#0" expanded="false" />
-            <element signature="e#12925#13530#1" expanded="false" />
-            <element signature="e#13531#13640#1" expanded="false" />
+            <element signature="e#4933#5197#0" expanded="false" />
+            <element signature="e#5223#5520#0" expanded="false" />
+            <element signature="e#5548#5675#0" expanded="false" />
+            <element signature="e#5704#5834#0" expanded="false" />
+            <element signature="e#5866#6091#0" expanded="false" />
+            <element signature="e#6122#6315#0" expanded="false" />
+            <element signature="e#6360#6419#0" expanded="false" />
+            <element signature="e#6454#6692#0" expanded="false" />
+            <element signature="e#6722#7390#0" expanded="false" />
+            <element signature="e#7420#7973#0" expanded="false" />
+            <element signature="e#8003#8895#0" expanded="false" />
+            <element signature="e#8926#9918#0" expanded="false" />
+            <element signature="e#10004#10890#0" expanded="false" />
+            <element signature="e#10953#11478#0" expanded="false" />
+            <element signature="e#11501#11699#0" expanded="false" />
+            <element signature="e#11722#12063#0" expanded="false" />
+            <element signature="e#12087#12530#0" expanded="false" />
+            <element signature="e#12924#13529#1" expanded="false" />
+            <element signature="e#13530#13639#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_laven.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="65" selection-start-line="21" selection-start-column="65" selection-end-line="21" selection-end-column="65" />
+          <folding>
+            <element signature="e#68#1060#0" expanded="false" />
+            <element signature="e#1061#1718#1" expanded="false" />
+            <element signature="e#1770#2377#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wordspellcheck.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0075431033">
+          <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+          <folding>
+            <element signature="e#332#373#0" expanded="false" />
+            <element signature="e#398#478#0" expanded="false" />
+            <element signature="e#510#847#0" expanded="false" />
+            <element signature="e#879#996#0" expanded="false" />
+            <element signature="e#1029#1481#0" expanded="false" />
+            <element signature="e#1514#1694#0" expanded="false" />
+            <element signature="e#1737#3665#0" expanded="false" />
+            <element signature="e#3725#4472#0" expanded="false" />
+            <element signature="e#4506#4904#0" expanded="false" />
+            <element signature="e#4933#5197#0" expanded="false" />
+            <element signature="e#5223#5520#0" expanded="false" />
+            <element signature="e#5548#5675#0" expanded="false" />
+            <element signature="e#5704#5834#0" expanded="false" />
+            <element signature="e#5866#6091#0" expanded="false" />
+            <element signature="e#6122#6315#0" expanded="false" />
+            <element signature="e#6360#6419#0" expanded="false" />
+            <element signature="e#6454#6692#0" expanded="false" />
+            <element signature="e#6722#7390#0" expanded="false" />
+            <element signature="e#7420#7973#0" expanded="false" />
+            <element signature="e#8003#8895#0" expanded="false" />
+            <element signature="e#8926#9918#0" expanded="false" />
+            <element signature="e#10004#10890#0" expanded="false" />
+            <element signature="e#10953#11478#0" expanded="false" />
+            <element signature="e#11501#11699#0" expanded="false" />
+            <element signature="e#11722#12063#0" expanded="false" />
+            <element signature="e#12087#12530#0" expanded="false" />
+            <element signature="e#12924#13529#1" expanded="false" />
+            <element signature="e#13530#13639#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_laven.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+          <folding>
+            <element signature="e#68#1060#0" expanded="false" />
+            <element signature="e#1061#1718#1" expanded="false" />
+            <element signature="e#1770#2377#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/phrasespellcheck.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pos_mahesh.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="116" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#196#468#0" expanded="false" />
+            <element signature="e#503#663#0" expanded="false" />
+            <element signature="e#3346#4207#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/postag.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8717672">
+          <caret line="154" column="0" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#196#468#0" expanded="false" />
+            <element signature="e#503#663#0" expanded="false" />
+            <element signature="e#3264#4125#0" expanded="false" />
           </folding>
         </state>
       </provider>

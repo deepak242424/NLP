@@ -137,7 +137,6 @@ def getConfusionMatrices():
     return toreturn
 
 def getBigramMatrix():
-
     bigrammat = np.zeros((26,26))
     f = open('count_2l.txt','r')
     x = csv.reader(f,delimiter='\t')

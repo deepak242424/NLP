@@ -76,10 +76,10 @@ def getIncorrectWords(phrase):
     return incorrectword
 
 #----------------------Main------------------------------
-window = 5
+window = 3
 smooth_constant = 1e-5
 phrase = "a geant leap for mankind"
-#saveLikelihoodDict(5)
+#saveLikelihoodDict(3)
 (likelihoods_dict, sum_count_dict) = loadLikelihoodDict()
 incorrectwords = getIncorrectWords(phrase)
 vocab_size = len(getVocabSet())
